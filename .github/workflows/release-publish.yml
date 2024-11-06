@@ -10,8 +10,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{ github.repository }}
-  DOCKER_TAG: theignorantview/mongodb-es-sync-service
+  IMAGE_NAME: theignorantview/mongodb-es-sync-service
 
 permissions:
   contents: write
