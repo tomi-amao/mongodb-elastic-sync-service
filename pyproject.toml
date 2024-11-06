@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mongodb-sync-service"
+version = "0.1.0"
+description = ""
+authors = ["Ignorant View theignorant.views@gmail.com"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+elasticsearch = "^8.15.1"
+pymongo = "^4.10.1"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.0.1"
+mypy = "^1.13.0"
+ruff = "^0.7.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
