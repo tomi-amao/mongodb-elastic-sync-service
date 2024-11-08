@@ -102,15 +102,13 @@ class Service:
                 self.delete_document_in_es(collection, document_id)
         except KeyError as e:
             logging.error(f"Error processing change event: Missing expected field {e}")
-        except KeyError as e:
-            logging.error(f"Error processing change event: Missing expected field {e}")
 
     def get_collection_name(self, mongo_collection: str) -> str:
         """Maps MongoDB collections to Elasticsearch indices."""
         collection_mapping = {
-            "tasks": "skillanthropy-tasks",
+            "tasks": "skillanthropy_tasks",
             "users": "skillanthropy_users",
-            "charities": "skillanthropy-charities",
+            "charities": "skillanthropy_charities",
         }
         return collection_mapping.get(mongo_collection, mongo_collection)
 
