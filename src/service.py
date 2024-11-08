@@ -3,6 +3,8 @@ import signal
 import sys
 import time
 from typing import Any, Optional
+from datetime import datetime
+from bson import ObjectId
 
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
@@ -133,9 +135,14 @@ class Service:
         """Update a document in Elasticsearch."""
         try:
             if self.es_client:
-                self.es_client.index(
-                    index=collection_name, id=document_id, document=document
-                )
+                # Convert datetime objects to ISO format
+                for key, value in document.items():
+                    if isinstance(value, datetime):
+                        document[key] = value.isoformat()
+                    elif isinstance(value, ObjectId):
+                        document[key] = str(value)
+                        document_id = str(value)
+
                 logging.info(
                     f"Updated document {document_id} in collection {collection_name}"
                 )
@@ -146,6 +153,8 @@ class Service:
         """Delete a document from Elasticsearch."""
         try:
             if self.es_client:
+                document_id = str(document_id)
+
                 self.es_client.delete(index=index, id=document_id)
                 logging.info(f"Deleted document {document_id} from index {index}")
         except Exception as e:
