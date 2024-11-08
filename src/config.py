@@ -9,7 +9,7 @@ class Config:
     MONGODB_URI = os.getenv("MONGODB_URI", "http://localhost:27017")
     DATABASE_NAME = os.getenv("DATABASE_NAME", "skillanthropy")
     COLLECTION_NAME = os.getenv("COLLECTION_NAME", "tasks")
-    ELASTICSEARCH_URI = os.getenv("ELASTICSEARCH_URI", "http://localhost:27017")
+    ELASTICSEARCH_URI = os.getenv("ELASTICSEARCH_URI", "http://localhost:9200")
     ELASTIC_USERNAME = os.getenv("ELASTICSEARCH_USERNAME")
     ELASTIC_PASSWORD = os.getenv("ELASTICSEARCH_PASSWORD")
     RETRY_INTERVAL_SEC = os.getenv("RETRY_INTERVAL_SECOND", 5)

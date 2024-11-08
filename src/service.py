@@ -143,6 +143,14 @@ class Service:
                         document[key] = str(value)
                         document_id = str(value)
 
+                # Remove _id from the document, as it should be passed separately as document_id and replace it with id
+                document["id"] = document["_id"]
+                document.pop("_id", None)
+
+                self.es_client.index(
+                    index=collection_name, id=document_id, document=document
+                )
+                logging.info(document)
                 logging.info(
                     f"Updated document {document_id} in collection {collection_name}"
                 )
