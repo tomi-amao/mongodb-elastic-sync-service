@@ -132,7 +132,7 @@ class Service:
     def insert_document_in_es(
         self, collection_name: str, document_id: Any, document: dict[str, Any]
     ) -> None:
-        """Update a document in Elasticsearch."""
+        """Create a document in Elasticsearch."""
         try:
             if self.es_client:
                 # Convert datetime objects to ISO format
@@ -141,7 +141,6 @@ class Service:
                         document[key] = value.isoformat()
                     elif isinstance(value, ObjectId):
                         document[key] = str(value)
-                        document_id = str(value)
 
                 # Remove _id from the document, as it should be passed separately as document_id and replace it with id
                 document["id"] = document["_id"]
